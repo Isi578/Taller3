@@ -21,19 +21,36 @@ public class ReservationService {
         this.subject = subject;
     }
 
-    public Reservation createReservation(String customerName, Transport transport, PricingStrategy pricingStrategy) {
+    public Reservation createReservation(
+            String customerName,
+            Transport transport,
+            PricingStrategy pricingStrategy) {
+
         validateCreate(customerName, transport, pricingStrategy);
+
         double finalCost = pricingStrategy.calculate(transport.getBaseFare());
-        Reservation reservation = new Reservation(customerName.trim(), transport, finalCost);
+
+        Reservation reservation = new Reservation(
+                customerName.trim(), transport, finalCost);
+
         reservations.put(reservation.getId(), reservation);
-        subject.notifyObservers(new ReservationEvent(ReservationEvent.EventType.CREATED, reservation));
+
+        subject.notifyObservers(
+                new ReservationEvent(
+                        ReservationEvent.EventType.CREATED, reservation));
+
         return reservation;
     }
 
     public Reservation cancelReservation(String reservationId) {
         Reservation reservation = findReservation(reservationId);
+
         reservation.cancel();
-        subject.notifyObservers(new ReservationEvent(ReservationEvent.EventType.CANCELLED, reservation));
+
+        subject.notifyObservers(
+                new ReservationEvent(
+                        ReservationEvent.EventType.CANCELLED, reservation));
+
         return reservation;
     }
 
@@ -49,14 +66,22 @@ public class ReservationService {
         if (reservationId == null || reservationId.isBlank()) {
             throw new ValidationException("Reservation id is required.");
         }
+
         Reservation reservation = reservations.get(reservationId.trim());
+
         if (reservation == null) {
-            throw new ValidationException("Reservation not found: " + reservationId);
+            throw new ValidationException(
+                    "Reservation not found: " + reservationId);
         }
+
         return reservation;
     }
 
-    private void validateCreate(String customerName, Transport transport, PricingStrategy pricingStrategy) {
+    private void validateCreate(
+            String customerName,
+            Transport transport,
+            PricingStrategy pricingStrategy) {
+
         if (customerName == null || customerName.isBlank()) {
             throw new ValidationException("Customer name is required.");
         }

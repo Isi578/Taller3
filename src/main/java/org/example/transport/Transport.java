@@ -28,6 +28,8 @@ public abstract class Transport {
 
     @Override
     public String toString() {
-        return getType() + " [id=" + id + ", name=" + name + ", baseFare=" + baseFare + "]";
+        return getType() + " [id=" + id
+                + ", name=" + name
+                + ", baseFare=" + baseFare + "]";
     }
 }

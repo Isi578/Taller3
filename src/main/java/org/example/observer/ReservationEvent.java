@@ -42,7 +42,8 @@ public class ReservationEvent {
 
     @Override
     public String toString() {
-        return timestamp + " | " + type + " | customer=" + reservation.getCustomerName()
+        return timestamp + " | " + type
+                + " | customer=" + reservation.getCustomerName()
                 + " | reservationId=" + reservation.getId()
                 + " | status=" + statusAtEvent;
     }

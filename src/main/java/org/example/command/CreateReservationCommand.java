@@ -13,8 +13,11 @@ public class CreateReservationCommand implements Command {
     private final PricingStrategy pricingStrategy;
     private Reservation createdReservation;
 
-    public CreateReservationCommand(ReservationService service, String customerName,
-                                    Transport transport, PricingStrategy pricingStrategy) {
+    public CreateReservationCommand(
+            ReservationService service,
+            String customerName,
+            Transport transport,
+            PricingStrategy pricingStrategy) {
         this.service = service;
         this.customerName = customerName;
         this.transport = transport;
@@ -23,9 +26,12 @@ public class CreateReservationCommand implements Command {
 
     @Override
     public void execute() {
-        createdReservation = service.createReservation(customerName, transport, pricingStrategy);
-        System.out.println("[OK] Reservation created with " + pricingStrategy.getName()
-                + " fare: " + createdReservation);
+        createdReservation = service.createReservation(
+                customerName, transport, pricingStrategy);
+
+        System.out.println("[OK] Reservation created with "
+                + pricingStrategy.getName() + " fare: "
+                + createdReservation);
     }
 
     public Reservation getCreatedReservation() {

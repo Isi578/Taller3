@@ -14,8 +14,10 @@ public abstract class TransportFactory {
         if (baseFare <= 0) {
             throw new ValidationException("Base fare must be greater than zero.");
         }
+
         return buildTransport(id.trim(), name.trim(), baseFare);
     }
 
-    protected abstract Transport buildTransport(String id, String name, double baseFare);
+    protected abstract Transport buildTransport(
+            String id, String name, double baseFare);
 }

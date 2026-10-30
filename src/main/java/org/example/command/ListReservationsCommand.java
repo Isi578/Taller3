@@ -16,11 +16,14 @@ public class ListReservationsCommand implements Command {
     @Override
     public void execute() {
         List<Reservation> reservations = service.getAllReservations();
+
         if (reservations.isEmpty()) {
             System.out.println("[STATUS] No reservations found.");
             return;
         }
+
         System.out.println("[STATUS] Final reservation list:");
+
         for (Reservation reservation : reservations) {
             System.out.println("  - " + reservation);
         }

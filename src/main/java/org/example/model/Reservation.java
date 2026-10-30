@@ -43,9 +43,11 @@ public class Reservation {
 
     public void cancel() {
         if (status == ReservationStatus.CANCELLED) {
-            throw new ValidationException("Reservation " + id + " is already cancelled.");
+            throw new ValidationException(
+                    "Reservation " + id + " is already cancelled.");
         }
-        this.status = ReservationStatus.CANCELLED;
+
+        status = ReservationStatus.CANCELLED;
     }
 
     @Override

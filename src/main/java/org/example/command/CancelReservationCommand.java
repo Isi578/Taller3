@@ -8,7 +8,8 @@ public class CancelReservationCommand implements Command {
     private final ReservationService service;
     private final String reservationId;
 
-    public CancelReservationCommand(ReservationService service, String reservationId) {
+    public CancelReservationCommand(
+            ReservationService service, String reservationId) {
         this.service = service;
         this.reservationId = reservationId;
     }

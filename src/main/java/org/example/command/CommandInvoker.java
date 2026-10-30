@@ -7,7 +7,8 @@ public class CommandInvoker {
             command.execute();
         } catch (Exception exception) {
             System.out.println("[ERROR] " + exception.getMessage());
-            System.out.println("Failed operation skipped. Continuing with the next one.");
+            System.out.println(
+                    "Failed operation skipped. Continuing with the next one.");
         }
     }
 }
